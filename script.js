@@ -49,5 +49,19 @@ function playRound(playerSelection, computerSelection){
     return result;
 }
 
-let playerSelection = prompt('Enter a value');
-console.log(playRound(playerSelection,getComputerChoice()))
+function game(){
+    let count = 0;
+    let winner = [];
+    while(count < 5){
+        let playerSelection = prompt('Enter a value');
+        let result = playRound(playerSelection,getComputerChoice());
+        console.log(result);
+        winner.push(result);
+        count++;
+    }
+    let pwin = winner.filter((item) => item.includes('Won'));
+    let cwin = winner.filter((item) => item.includes('Lose'));
+    return `${pwin.length} - ${cwin.length}`;
+}
+
+console.log(game())
