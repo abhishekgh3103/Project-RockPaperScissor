@@ -49,19 +49,37 @@ function playRound(playerSelection, computerSelection){
     return result;
 }
 
+
 function game(){
-    let count = 0;
-    let winner = [];
-    while(count < 5){
-        let playerSelection = prompt('Enter a value');
-        let result = playRound(playerSelection,getComputerChoice());
-        console.log(result);
-        winner.push(result);
-        count++;
-    }
     let pwin = winner.filter((item) => item.includes('Won'));
     let cwin = winner.filter((item) => item.includes('Lose'));
+    if(count >=5){
+        count = 0;
+    }
     return `${pwin.length} - ${cwin.length}`;
+    
 }
 
-console.log(game())
+
+
+let playerSelection;
+let count = 0;
+let winner = [];
+let result;
+const buttons = document.querySelectorAll('.btn-input');
+const info = document.querySelector('.info');
+const displayRes = document.querySelector('.result');
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+    console.log(button.value);
+    playerSelection = button.value;
+    result = playRound(playerSelection,getComputerChoice());
+    console.log(result);
+    info.textContent =result;
+    winner.push(result);
+    count++;
+    finalResult = game();
+    displayRes.textContent = finalResult
+    });
+
+});

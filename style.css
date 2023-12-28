@@ -1,0 +1,53 @@
+@font-face {
+    font-family: myHeaderFont;
+    src: url(fonts/VeniteAdoremus-rgRBA.ttf);
+}
+body{
+    background-color: #424242;
+    margin: 0;
+    color: white;
+}
+header{
+    height:70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212121;
+    color: #ffeb3b;
+    font-family: myHeaderFont;
+    font-size:xx-large;
+}
+
+.info{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-container{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-input{
+    max-width: 120px;
+    max-height: 120px;
+    padding: 0;
+    border-radius: 5px;
+    border: 2px solid #ffeb3b;
+    outline: black;
+}
+
+.btn-input img{
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: fill;
+    
+}
+
+.result{
+    display: flex;
+    justify-content: center;
+}
