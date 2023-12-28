@@ -53,10 +53,16 @@ function playRound(playerSelection, computerSelection){
 function game(){
     let pwin = winner.filter((item) => item.includes('Won'));
     let cwin = winner.filter((item) => item.includes('Lose'));
-    if(count >=5){
-        count = 0;
+    finalResult = `${pwin.length} PLAYER ` + "     "+` COMPUTER ${cwin.length}`;
+    if(count >= 5){
+        if(pwin.length > cwin.length){
+            finalResult += 'You Won the Round!!!';
+        }
+        else if(pwin.length < cwin.length){
+            finalResult += 'You Loss the Round!!!';
+        }
     }
-    return `${pwin.length} - ${cwin.length}`;
+    return finalResult;
     
 }
 
@@ -66,20 +72,34 @@ let playerSelection;
 let count = 0;
 let winner = [];
 let result;
+let finalResult;
+let rstBtn= document.createElement('button');;
 const buttons = document.querySelectorAll('.btn-input');
 const info = document.querySelector('.info');
 const displayRes = document.querySelector('.result');
 buttons.forEach(button => {
     button.addEventListener('click', () => {
-    console.log(button.value);
     playerSelection = button.value;
     result = playRound(playerSelection,getComputerChoice());
-    console.log(result);
     info.textContent =result;
     winner.push(result);
     count++;
     finalResult = game();
-    displayRes.textContent = finalResult
+    displayRes.textContent = finalResult;
+    if(count >= 5){
+        rstBtn.textContent = 'RESET';
+        rstBtn.style ='background-color: #ffeb3b; font-family:myBodyFont; font-size: large; border-radius: 5px; width: 100px; height: 40px';
+        displayRes.appendChild(rstBtn);
+        count = 0;
+    }
     });
 
 });
+
+rstBtn.addEventListener('click',()=>{
+    winner =[];
+    finalResult = undefined;
+    info.textContent = finalResult;
+    displayRes.textContent = finalResult;
+    rstBtn.remove();
+})
